@@ -8,14 +8,14 @@ Welcome! This repository contains infrastructure as code (IaC) written in Terraf
 
 ### Normal Folder Contents in Terraform
 
-1. **main.tf**: This file contains the main Terraform configuration defining the infrastructure resources to be provisioned.
-2. **variables.tf**: Contains variable declarations used throughout the Terraform configuration. Modify these variables as needed to customize the infrastructure.
-3. **terraform.tfvars**: This file is used to set variable values. Make sure to fill in the required variables with appropriate values before running Terraform commands.
-4. **outputs.tf**: Defines the output values that will be displayed after Terraform applies the configuration. This can include important information such as resource IDs or endpoints.
-5. **README.md**: Documentation providing an overview of the repository and instructions for usage.
-6. **.gitignore**: Specifies files and directories that should be ignored by Git, such as Terraform state files.
-7. **.terraform**: Directory where Terraform stores its state and plugins. This directory is typically generated automatically by Terraform and should not be committed to version control.
-8. **(Optional) modules/**: Directory containing reusable Terraform modules. If used, each module should have its own README file providing instructions for usage.
+1. `main.tf`: This file contains the main Terraform configuration defining the infrastructure resources to be provisioned.
+2. `variables.tf`: Contains variable declarations used throughout the Terraform configuration. Modify these variables as needed to customize the infrastructure.
+3. `terraform.tfvars`: This file is used to set variable values. Make sure to fill in the required variables with appropriate values before running Terraform commands.
+4. `outputs.tf`: Defines the output values that will be displayed after Terraform applies the configuration. This can include important information such as resource IDs or endpoints.
+5. `README.md`: Documentation providing an overview of the repository and instructions for usage.
+6. `.gitignore`: Specifies files and directories that should be ignored by Git, such as Terraform state files.
+7. `.terraform`: Directory where Terraform stores its state and plugins. This directory is typically generated automatically by Terraform and should not be committed to version control.
+8. (Optional) modules/`: Directory containing reusable Terraform modules. If used, each module should have its own README file providing instructions for usage.
 
 ### Prerequisites
 
@@ -53,6 +53,11 @@ To clean up and destroy the provisioned infrastructure when no longer needed, ru
 ```bash
 terraform destroy
 ```
+
+#### State
+
+Terraform maintains a state file in S3 that keeps track of the resources it manages. It is versioned and each folder has it's own state file.
+I have not introduced state locking but this would be the logic next step for teams.
 
 ## EKS
 
