@@ -82,13 +82,12 @@ def postgres_path():
     password = os.getenv("DB_PASS")
     username = os.getenv("DB_USER")
 
-    # ssl_context = ssl.create_default_context()
-    # ssl_context.verify_mode = ssl.CERT_REQUIRED
-    # ssl_context.load_verify_locations("global-bundle.pem")
+    ssl_context = ssl.create_default_context()
+    ssl_context.verify_mode = ssl.CERT_REQUIRED
+    ssl_context.load_verify_locations("global-bundle.pem")
 
     con = pg8000.native.Connection(
-        user=username, password=password, host=host, port=port,
-        # ssl_context=ssl_context
+        user=username, password=password, host=host, port=port, ssl_context=ssl_context
     )
     for row in con.run("SELECT 1"):
         html = f"<pre><code>connect to postgres with ssl: {row}</code></pre>"
