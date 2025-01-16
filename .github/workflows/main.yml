@@ -54,7 +54,7 @@ jobs:
         id: image-path
         env:
           ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
-          ECR_REPOSITORY: ${{ secrets.ECR_REPO_NAME }}
+          ECR_REPOSITORY: 491085427149.dkr.ecr.us-east-2.amazonaws.com/app
         run: echo "::set-output name=path::$ECR_REGISTRY/$ECR_REPOSITORY:$GITHUB_RUN_NUMBER-k8s"
 
       - name: Build, tag, and push the image to Amazon ECR
