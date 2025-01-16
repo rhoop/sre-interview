@@ -78,25 +78,6 @@ aws eks update-kubeconfig --region us-east-2 --name dflow-production-eks
 
 kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
 
-#### Set the cluster up ELB/ALB
-
-```bash
-# create the controller account for EKS LB
-eksctl create iamserviceaccount \
-    --cluster=arn:aws:eks:us-east-2:491085427149:cluster/dflow-production-eks \
-    --namespace=kube-system \
-    --name=aws-load-balancer-controller \
-    --role-name AmazonEKSLoadBalancerControllerRole \
-    --attach-policy-arn=arn:aws:iam::491085427149:policy/AWSLoadBalancerControllerIAMPolicy \
-    --approve
-
-# install the EKS LB CSI with the controller account
-helm install aws-load-balancer-controller eks/aws-load-balancer-controller \
-    -n kube-system \
-    --set clusterName=arn:aws:eks:us-east-2:491085427149:cluster/dflow-production-eks \
-    --set serviceAccount.create=false \
-    --set serviceAccount.name=aws-load-balancer-controller
-```
 
 #### Install datadog
 

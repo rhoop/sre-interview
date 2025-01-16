@@ -82,4 +82,4 @@ jobs:
         env:
           KUBE_CONFIG_DATA: ${{ env.KUBE_CONFIG_DATA }}
         with:
-          command: helm upgrade dflow helm -fhelm/values.yaml --install --set tag=${{ github.run_number }} -n api
+          command: helm upgrade dflow helm -fhelm/values.yaml --install --wait --set tag=${{ github.run_number }} -n api

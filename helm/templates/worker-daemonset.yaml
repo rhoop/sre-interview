@@ -17,6 +17,6 @@ spec:
       containers:
         - name: worker
           image: "{{ .Values.image.registry }}/{{ .Values.image.name }}:{{ .Values.tag }}"
-          command: ["python3", "worker"]
+          command: ["python3", "worker.py"]
       restartPolicy: Always
 status: {}

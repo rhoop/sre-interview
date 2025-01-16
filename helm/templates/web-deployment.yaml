@@ -5,8 +5,8 @@ metadata:
   name: app-api
   namespace: api
 spec:
+  replicas: 2
   strategy:
-    replicas: 2
     type: RollingUpdate
     rollingUpdate:
       maxSurge: 4        # how many pods we can add at a time

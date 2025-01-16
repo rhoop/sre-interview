@@ -17,6 +17,6 @@ spec:
       containers:
         - name: cron
           image: "{{ .Values.image.registry }}/{{ .Values.image.name }}:{{ .Values.tag }}"
-          command: ["python3", "cron"]
+          command: ["python3", "cron.py"]
       restartPolicy: Always
 status: {}

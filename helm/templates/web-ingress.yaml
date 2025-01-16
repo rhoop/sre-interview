@@ -1,37 +1,23 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
+  name: dflow-ingress
   namespace: api
-  name: app-api
-  labels:
-    io.dflow.service: app-api
   annotations:
-    kubernetes.io/ingress.class: "alb"
-    ingress.kubernetes.io/ssl-redirect: "true"
-    alb.ingress.kubernetes.io/scheme: internet-facing
-    alb.ingress.kubernetes.io/target-type: ip
-    alb.ingress.kubernetes.io/subnets: subnet-048d233b9a552e8d2, subnet-088bf3d65cfa770d8, subnet-0cfa87c0e04143f21
-    alb.ingress.kubernetes.io/listen-ports: '[{"HTTP": 80}]'
-    alb.ingress.kubernetes.io/connection-idle-timeout: "7200"
-    alb.ingress.kubernetes.io/load-balancer-attributes: idle_timeout.timeout_seconds=4000
-    # Health Check Settings
-    alb.ingress.kubernetes.io/healthcheck-protocol: HTTP
-    alb.ingress.kubernetes.io/healthcheck-port: traffic-port
-    alb.ingress.kubernetes.io/healthcheck-path: /status
-    alb.ingress.kubernetes.io/healthcheck-interval-seconds: "30"
-    alb.ingress.kubernetes.io/healthcheck-timeout-seconds: "5"
-    alb.ingress.kubernetes.io/success-codes: "200-400"
-    alb.ingress.kubernetes.io/healthy-threshold-count: "5"
-    alb.ingress.kubernetes.io/unhealthy-threshold-count: "5"
+
+    nginx.ingress.kubernetes.io/rewrite-target: /
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
 spec:
-  ingressClassName: alb
+  ingressClassName: nginx
   rules:
-    - http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: app-api
-                port:
-                  number: {{ .Values.port }}
+
+  - http:
+      paths:
+        - path: /
+          pathType: Prefix
+          backend:
+            service:
+              name: app-api
+              port:
+                number: 8080
+
