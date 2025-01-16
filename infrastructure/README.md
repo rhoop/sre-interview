@@ -76,8 +76,15 @@ aws eks update-kubeconfig --region us-east-2 --name dflow-production-eks
 
 #### Turn on the metrics Service
 
+```bash
 kubectl apply -f https://github.com/kubernetes-sigs/metrics-server/releases/latest/download/components.yaml
+```
 
+#### Install NGINX controller
+
+```bash
+kubectl apply -f https://raw.githubusercontent.com/kubernetes/ingress-nginx/controller-v1.12.0/deploy/static/provider/aws/deploy.yaml
+```
 
 #### Install datadog
 
