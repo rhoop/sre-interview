@@ -57,14 +57,14 @@ def redis_path():
 
     host = os.getenv("REDIS_HOST")
     port = int(os.getenv("REDIS_PORT"))
-    password = os.getenv("REDIS_PASS")
+    # password = os.getenv("REDIS_PASS")
     connection = redis.Redis(
         host=host,
         port=port,
-        password=password,
+        # password=password,
         decode_responses=True,
-        ssl=True,
-        ssl_cert_reqs="none",
+        # ssl=True,
+        # ssl_cert_reqs="none",
     )
     connection.set("foo", "bar")
     html = f"<pre><code>ping redis with tls: {connection.ping()}</code></pre>"
@@ -82,12 +82,13 @@ def postgres_path():
     password = os.getenv("DB_PASS")
     username = os.getenv("DB_USER")
 
-    ssl_context = ssl.create_default_context()
-    ssl_context.verify_mode = ssl.CERT_REQUIRED
-    ssl_context.load_verify_locations("global-bundle.pem")
+    # ssl_context = ssl.create_default_context()
+    # ssl_context.verify_mode = ssl.CERT_REQUIRED
+    # ssl_context.load_verify_locations("global-bundle.pem")
 
     con = pg8000.native.Connection(
-        user=username, password=password, host=host, port=port, ssl_context=ssl_context
+        user=username, password=password, host=host, port=port,
+        # ssl_context=ssl_context
     )
     for row in con.run("SELECT 1"):
         html = f"<pre><code>connect to postgres with ssl: {row}</code></pre>"
