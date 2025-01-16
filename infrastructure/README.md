@@ -108,17 +108,15 @@ helm install datadog-monitoring \
 ## Installing the DFlow App
 
 ```bash
-
-cd helm
-helm install api . -n api --set tag=1
-
-# github tag 1
-# helm upgrade --set tag=1
+helm upgrade --install dflow helm -f helm/values.yaml --install --set tag=17 -n api
 ```
 
+### To scale api instances
+
+```bash
+kubectl scale --replicas=3 deployment  app-api -n api
 ```
 
-## Installing PostgreSQL
+## Accessing Logs
 
-
-```
+All logs are in https://us5.datadoghq.com/logs

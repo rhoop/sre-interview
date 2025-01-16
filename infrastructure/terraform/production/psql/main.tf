@@ -46,7 +46,7 @@ resource "aws_security_group" "psql_prod" {
 resource "aws_db_instance" "default" {
   allocated_storage = 10
   db_name           = "mydb"
-  engine            = "mysql"
+  engine            = "postgres"
   instance_class    = "db.t4g.micro"
   username          = "postgres"
   password          = "postgres"

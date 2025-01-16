@@ -5,10 +5,11 @@ image:
   registry: 491085427149.dkr.ecr.us-east-2.amazonaws.com
 
 psql:
-  host: terraform-20250116034736333800000001.c5i4oiei6ml0.us-east-2.rds.amazonaws.com
+  host: terraform-20250116214715988700000001.c5i4oiei6ml0.us-east-2.rds.amazonaws.com
   port: 5432
   username: postgres
   password: postgres
+  database: mydb
 
 redis:
   host: cluster-dflow.k9mj0k.0001.use2.cache.amazonaws.com
