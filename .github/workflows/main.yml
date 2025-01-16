@@ -66,6 +66,20 @@ jobs:
           builder: ${{ steps.buildx.outputs.name }}
           push: true
           platforms: linux/amd64
-          tags: ${{ steps.image-path.outputs.path }}
+          tags: $GITHUB_RUN_NUMBER-k8s
           cache-from: type=gha, scope=${{ github.workflow }}
           cache-to: type=gha, scope=${{ github.workflow }}
+
+      - name: kubeconfig
+        run: |
+          aws eks update-kubeconfig --name ${{ env.CLUSTER_NAME }} --region ${{ env.AWS_REGION }}  --kubeconfig ./kubeconfig
+          echo 'KUBE_CONFIG_DATA<<EOF' >> $GITHUB_ENV
+          echo $(cat ./kubeconfig | base64) >> $GITHUB_ENV
+          echo 'EOF' >> $GITHUB_ENV
+
+      - name: helm deploy
+        uses: koslib/helm-eks-action@master
+        env:
+          KUBE_CONFIG_DATA: ${{ env.KUBE_CONFIG_DATA }}
+        with:
+          command: helm upgrade app helm -f helm/values.yaml --install --wait --set tag=$GITHUB_RUN_NUMBER-k8s

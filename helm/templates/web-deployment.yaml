@@ -5,8 +5,8 @@ metadata:
   name: app-api
   namespace: api
 spec:
-  replicas: 6
   strategy:
+    replicas: 2
     type: RollingUpdate
     rollingUpdate:
       maxSurge: 4        # how many pods we can add at a time
@@ -14,7 +14,6 @@ spec:
   selector:
     matchLabels:
       io.dflow.service: app-api
-  strategy: {}
   template:
     metadata:
       creationTimestamp: null
@@ -23,30 +22,24 @@ spec:
     spec:
       containers:
         - env:
-          - name: REDIS_HOST
-            value: {{ .Values.redis.host }}
-          - name: REDIS_PORT
-            value: {{ .Values.redis.port }}
-          - name: REDIS_PASS
-            value: {{ .Values.redis.pass }}
-          - name: DB_HOST
-            value: {{ .Values.psql.host }}
-          - name: DB_PORT
-            value: {{ .Values.psql.port }}
-          - name: DB_PASS
-            value: {{ .Values.psql.password }}
-          - name: DB_USER
-            value: {{ .Values.psql.username }}
-          image: "{{ .Values.image.registry }}/{{ .Values.image.name }}:{{ .Values.image.tag }}"
+            - name: REDIS_HOST
+              value: "{{ .Values.redis.host }}"
+            - name: REDIS_PORT
+              value: "{{ .Values.redis.port }}"
+            - name: REDIS_PASS
+              value: "{{ .Values.redis.pass }}"
+            - name: DB_HOST
+              value: "{{ .Values.psql.host }}"
+            - name: DB_PORT
+              value: "{{ .Values.psql.port }}"
+            - name: DB_PASS
+              value: "{{ .Values.psql.password }}"
+            - name: DB_USER
+              value: "{{ .Values.psql.username }}"
+
+          image: "{{ .Values.image.registry }}/{{ .Values.image.name }}:{{ .Values.tag }}"
           name: app-api
           ports:
-            - containerPort: {{ .Values.image.port }}
-          resources:
-            limits:
-              cpu: 0.6
-              memory: 756Mi
-            requests:
-              cpu: 100m
-              memory: 384Mi
+            - containerPort: {{ .Values.port }}
       restartPolicy: Always
 status: {}

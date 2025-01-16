@@ -1,6 +1,6 @@
-name: dflow-api
-description: A Helm Chart for dflow-api
+name: dflow
+description: A Helm Chart for dflow
 version: 0.0.1
 apiVersion: v2
 keywords:
-  - dflow-api
+  - api

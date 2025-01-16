@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  creationTimestamp: null
+  name: app-worker
+  namespace: api
+spec:
+  selector:
+    matchLabels:
+      io.dflow.service: app-worker
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.dflow.service: app-worker
+    spec:
+      containers:
+        - name: worker
+          image: "{{ .Values.image.registry }}/{{ .Values.image.name }}:{{ .Values.tag }}"
+          command: ["python3", "worker"]
+      restartPolicy: Always
+status: {}

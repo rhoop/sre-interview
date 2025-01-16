@@ -1,10 +1,8 @@
 env: production
-
+port: 8080
 image:
-  port: 8080
-  name: specular-platform
-  tag: c2a7ccf6fcb3f9e087a13b03900e070da36df751
-  registry: 792926601177.dkr.ecr.us-east-2.amazonaws.com
+  name: app
+  registry: 491085427149.dkr.ecr.us-east-2.amazonaws.com
 
 psql:
   host: terraform-20250116034736333800000001.c5i4oiei6ml0.us-east-2.rds.amazonaws.com

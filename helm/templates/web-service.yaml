@@ -8,7 +8,7 @@ metadata:
   name: app-api
 spec:
   ports:
-    - port: {{ .Values.web.port }}
+    - port: {{ .Values.port }}
       protocol: TCP
   selector:
     io.dflow.service: app-api

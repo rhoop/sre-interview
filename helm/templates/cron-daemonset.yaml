@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  creationTimestamp: null
+  name: app-cron
+  namespace: api
+spec:
+  selector:
+    matchLabels:
+      io.dflow.service: app-cron
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.dflow.service: app-cron
+    spec:
+      containers:
+        - name: cron
+          image: "{{ .Values.image.registry }}/{{ .Values.image.name }}:{{ .Values.tag }}"
+          command: ["python3", "cron"]
+      restartPolicy: Always
+status: {}
