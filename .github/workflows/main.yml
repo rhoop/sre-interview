@@ -61,8 +61,8 @@ jobs:
         id: build-image
         uses: docker/build-push-action@v2
         with:
-          context: ./app
-          file: ./Dockerfile
+          context: ./
+          file: ./app/Dockerfile
           builder: ${{ steps.buildx.outputs.name }}
           push: true
           platforms: linux/amd64
