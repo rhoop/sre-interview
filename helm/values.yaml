@@ -1,0 +1,20 @@
+env: production
+
+image:
+  port: 8080
+  name: specular-platform
+  tag: c2a7ccf6fcb3f9e087a13b03900e070da36df751
+  registry: 792926601177.dkr.ecr.us-east-2.amazonaws.com
+
+psql:
+  host: terraform-20250116034736333800000001.c5i4oiei6ml0.us-east-2.rds.amazonaws.com
+  port: 5432
+  username: postgres
+  password: postgres
+
+redis:
+  host: cluster-dflow.k9mj0k.0001.use2.cache.amazonaws.com
+  port: 6379
+  pass: pass
+# override with helm [upgrade|install] --set tag=<tagnumber>
+tag: 1

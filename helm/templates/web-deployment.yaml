@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  name: app-api
+  namespace: api
+spec:
+  replicas: 6
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 4        # how many pods we can add at a time
+      maxUnavailable: 2  # maxUnavailable define how many pods can be unavailable during the rolling update
+  selector:
+    matchLabels:
+      io.dflow.service: app-api
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.dflow.service: app-api
+    spec:
+      containers:
+        - env:
+          - name: REDIS_HOST
+            value: {{ .Values.redis.host }}
+          - name: REDIS_PORT
+            value: {{ .Values.redis.port }}
+          - name: REDIS_PASS
+            value: {{ .Values.redis.pass }}
+          - name: DB_HOST
+            value: {{ .Values.psql.host }}
+          - name: DB_PORT
+            value: {{ .Values.psql.port }}
+          - name: DB_PASS
+            value: {{ .Values.psql.password }}
+          - name: DB_USER
+            value: {{ .Values.psql.username }}
+          image: "{{ .Values.image.registry }}/{{ .Values.image.name }}:{{ .Values.image.tag }}"
+          name: app-api
+          ports:
+            - containerPort: {{ .Values.image.port }}
+          resources:
+            limits:
+              cpu: 0.6
+              memory: 756Mi
+            requests:
+              cpu: 100m
+              memory: 384Mi
+      restartPolicy: Always
+status: {}

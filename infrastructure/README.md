@@ -124,15 +124,11 @@ helm install datadog-monitoring \
     datadog/datadog
 ```
 
-### Installing the DFlow App
+## Installing the DFlow App
 
 ```bash
 
-# create the kube secret for doppler
-kubectl create secret -n api generic doppler --from-literal servicetoken="$DOPPLER_SERVICE_TOKEN"
-
 cd helm
-
 helm install api . -n api --set tag=1
 
 # github tag 1
@@ -141,11 +137,7 @@ helm install api . -n api --set tag=1
 
 ```
 
-Double instances on API spike < 75% CPU double at 50%
+## Installing PostgreSQL
 
 
-API
-- RUNNER=api
-- RUNNER=worker
-scale by CPU
 ```
