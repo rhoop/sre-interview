@@ -66,7 +66,7 @@ resource "aws_instance" "singleton_ec2_instance" {
   dynamic "instance_market_options" {
     for_each = var.spot != false ? [0] : []
     content {
-        market_type = "spot"
+      market_type = "spot"
     }
   }
 

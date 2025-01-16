@@ -38,7 +38,7 @@ module "eks" {
 
   eks_managed_node_groups = {
     ondemand = {
-      name = "dflow-production-spot"
+      name = "dflow-prod-spot"
 
       instance_types = ["t3.small", "t3.medium"]
 
@@ -97,8 +97,8 @@ module "irsa-ebs-csi" {
 }
 
 resource "aws_eks_addon" "ebs-csi" {
-  cluster_name             = module.eks.cluster_name
-  addon_name               = "aws-ebs-csi-driver"
+  cluster_name = module.eks.cluster_name
+  addon_name   = "aws-ebs-csi-driver"
   # addon_version            = "v1.26.1-eksbuild.1"
   service_account_role_arn = module.irsa-ebs-csi.iam_role_arn
   tags = {
@@ -108,8 +108,8 @@ resource "aws_eks_addon" "ebs-csi" {
 }
 
 resource "aws_eks_addon" "coredns" {
-  cluster_name                = module.eks.cluster_name
-  addon_name                  = "coredns"
+  cluster_name = module.eks.cluster_name
+  addon_name   = "coredns"
   # addon_version               = "v1.11.1-eksbuild.4"
   resolve_conflicts_on_create = "OVERWRITE"
   service_account_role_arn    = "arn:aws:iam::491085427149:role/AmazonEKS-EBSCSIRole-dflow-production-eks"
@@ -121,8 +121,8 @@ resource "aws_eks_addon" "coredns" {
 }
 
 resource "aws_eks_addon" "eks-pod-identity-agent" {
-  cluster_name             = module.eks.cluster_name
-  addon_name               = "eks-pod-identity-agent"
+  cluster_name = module.eks.cluster_name
+  addon_name   = "eks-pod-identity-agent"
   # addon_version            = "v1.0.0-eksbuild.1"
   service_account_role_arn = module.irsa-ebs-csi.iam_role_arn
   # resolve_conflicts_on_create = "OVERWRITE"
@@ -133,8 +133,8 @@ resource "aws_eks_addon" "eks-pod-identity-agent" {
 }
 
 resource "aws_eks_addon" "kube-proxy" {
-  cluster_name                = module.eks.cluster_name
-  addon_name                  = "kube-proxy"
+  cluster_name = module.eks.cluster_name
+  addon_name   = "kube-proxy"
   # addon_version               = "v1.29.0-eksbuild.1"
   resolve_conflicts_on_create = "OVERWRITE"
   service_account_role_arn    = "arn:aws:iam::491085427149:role/AmazonEKS-EBSCSIRole-dflow-production-eks"
@@ -145,8 +145,8 @@ resource "aws_eks_addon" "kube-proxy" {
 }
 
 resource "aws_eks_addon" "vpc-cni" {
-  cluster_name  = module.eks.cluster_name
-  addon_name    = "vpc-cni"
+  cluster_name = module.eks.cluster_name
+  addon_name   = "vpc-cni"
   # addon_version = "v1.14.1-eksbuild.1"
   # resolve_conflicts_on_create = "OVERWRITE"
   tags = {
@@ -158,7 +158,7 @@ resource "aws_eks_addon" "vpc-cni" {
 # resource "aws_eks_addon" "aws-efs-csi-driver" {
 #   cluster_name  = module.eks.cluster_name
 #   addon_name    = "aws-efs-csi-driver"
-  # addon_version = "v1.7.2-eksbuild.1"
+# addon_version = "v1.7.2-eksbuild.1"
 #   # resolve_conflicts_on_create = "OVERWRITE"
 #   tags = {
 #     "eks_addon" = "aws-efs-csi-driver"
