@@ -4,11 +4,11 @@ metadata:
   namespace: api
   creationTimestamp: null
   labels:
-    io.dflow.service: app-api
+    io.test.service: app-api
   name: app-api
 spec:
   ports:
     - port: {{ .Values.port }}
       protocol: TCP
   selector:
-    io.dflow.service: app-api
+    io.test.service: app-api

@@ -12,7 +12,7 @@ psql:
   database: mydb
 
 redis:
-  host: cluster-dflow.k9mj0k.0001.use2.cache.amazonaws.com
+  host: cluster-test.k9mj0k.0001.use2.cache.amazonaws.com
   port: 6379
   pass: pass
 # override with helm [upgrade|install] --set tag=<tagnumber>

@@ -11,7 +11,7 @@ variable "aws_region" {
 }
 
 resource "aws_s3_bucket" "logging" {
-  bucket = "dflow-prod-s3-logs"
+  bucket = "test-prod-s3-logs"
   acl    = "private"
 
 
@@ -21,7 +21,7 @@ resource "aws_s3_bucket" "logging" {
 }
 
 resource "aws_s3_bucket" "state" {
-  bucket = "dflow-terraform-state-use2"
+  bucket = "test-terraform-state-use2"
   acl    = "private"
 
   logging {

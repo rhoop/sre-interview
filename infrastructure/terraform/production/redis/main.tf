@@ -8,8 +8,8 @@ resource "aws_elasticache_subnet_group" "redis_prod" {
   ]
 }
 
-resource "aws_elasticache_cluster" "dflow" {
-  cluster_id           = "cluster-dflow"
+resource "aws_elasticache_cluster" "test" {
+  cluster_id           = "cluster-test"
   engine               = "redis"
   node_type            = "cache.t3.micro"
   num_cache_nodes      = 1

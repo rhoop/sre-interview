@@ -7,12 +7,12 @@ metadata:
 spec:
   selector:
     matchLabels:
-      io.dflow.service: app-cron
+      io.test.service: app-cron
   template:
     metadata:
       creationTimestamp: null
       labels:
-        io.dflow.service: app-cron
+        io.test.service: app-cron
     spec:
       containers:
         - name: cron

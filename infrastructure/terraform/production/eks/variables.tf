@@ -16,7 +16,7 @@ variable "env" {
 
 terraform {
   backend "s3" {
-    bucket = "dflow-terraform-state-use2"
+    bucket = "test-terraform-state-use2"
     key    = "services/production/eks/main.tfstate"
     region = "us-east-2"
   }
@@ -25,7 +25,7 @@ terraform {
 data "terraform_remote_state" "vpc" {
   backend = "s3"
   config = {
-    bucket = "dflow-terraform-state-use2"
+    bucket = "test-terraform-state-use2"
     key    = "vpc/production/main.tfstate"
     region = "us-east-2"
   }

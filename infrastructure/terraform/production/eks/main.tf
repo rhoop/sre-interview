@@ -12,7 +12,7 @@ data "aws_availability_zones" "available" {
 }
 
 locals {
-  cluster_name = "dflow-production-eks"
+  cluster_name = "test-production-eks"
 }
 
 
@@ -38,7 +38,7 @@ module "eks" {
 
   eks_managed_node_groups = {
     ondemand = {
-      name = "dflow-prod-spot"
+      name = "test-prod-spot"
 
       instance_types = ["t3.small", "t3.medium"]
 
@@ -112,7 +112,7 @@ resource "aws_eks_addon" "coredns" {
   addon_name   = "coredns"
   # addon_version               = "v1.11.1-eksbuild.4"
   resolve_conflicts_on_create = "OVERWRITE"
-  service_account_role_arn    = "arn:aws:iam::491085427149:role/AmazonEKS-EBSCSIRole-dflow-production-eks"
+  service_account_role_arn    = "arn:aws:iam::491085427149:role/AmazonEKS-EBSCSIRole-test-production-eks"
 
   tags = {
     "eks_addon" = "coredns"
@@ -137,7 +137,7 @@ resource "aws_eks_addon" "kube-proxy" {
   addon_name   = "kube-proxy"
   # addon_version               = "v1.29.0-eksbuild.1"
   resolve_conflicts_on_create = "OVERWRITE"
-  service_account_role_arn    = "arn:aws:iam::491085427149:role/AmazonEKS-EBSCSIRole-dflow-production-eks"
+  service_account_role_arn    = "arn:aws:iam::491085427149:role/AmazonEKS-EBSCSIRole-test-production-eks"
   tags = {
     "eks_addon" = "kube-proxy"
     "terraform" = "true"

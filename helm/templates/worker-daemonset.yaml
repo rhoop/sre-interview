@@ -7,12 +7,12 @@ metadata:
 spec:
   selector:
     matchLabels:
-      io.dflow.service: app-worker
+      io.test.service: app-worker
   template:
     metadata:
       creationTimestamp: null
       labels:
-        io.dflow.service: app-worker
+        io.test.service: app-worker
     spec:
       containers:
         - name: worker

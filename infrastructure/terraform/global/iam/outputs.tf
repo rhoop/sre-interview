@@ -19,6 +19,6 @@ output "aws_iam_instance_profile_ecr" {
   value = aws_iam_instance_profile.ecr.name
 }
 
-output "dflow_main_ecr_policy" {
-  value = data.aws_iam_policy_document.dflow_main_ecr_policy.json
+output "test_main_ecr_policy" {
+  value = data.aws_iam_policy_document.test_main_ecr_policy.json
 }

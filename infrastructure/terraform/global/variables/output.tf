@@ -3,16 +3,16 @@ output "aws_region" {
 }
 
 output "customer" {
-  value = "dflow"
+  value = "test"
 }
 
 
 output "external_domain" {
-  value = "dflow.net"
+  value = "test.net"
 }
 
 output "aws_keypair_name" {
-  value = "dflow"
+  value = "test"
 }
 
 
@@ -42,11 +42,11 @@ output "prod_cidr_prefix" {
 
 
 output "s3_log_id" {
-  value = "dflow-prod-s3-logs"
+  value = "test-prod-s3-logs"
 }
 
 output "s3_bucket_prefix" {
-  value = "dflow"
+  value = "test"
 }
 
 output "s3_bucket_region" {

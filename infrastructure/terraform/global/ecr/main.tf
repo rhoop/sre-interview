@@ -7,6 +7,6 @@ resource "aws_ecr_repository" "app_ecr" {
 
 resource "aws_ecr_repository_policy" "app_ecr" {
   repository = aws_ecr_repository.app_ecr.name
-  policy     = data.terraform_remote_state.iam.outputs.dflow_main_ecr_policy
+  policy     = data.terraform_remote_state.iam.outputs.test_main_ecr_policy
 }
 

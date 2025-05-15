@@ -11,7 +11,7 @@ resource "aws_iam_instance_profile" "ecr" {
 
 # Used for all ECR Repos by default
 # Allows build and deploy
-data "aws_iam_policy_document" "dflow_main_ecr_policy" {
+data "aws_iam_policy_document" "test_main_ecr_policy" {
   statement {
     actions = [
       "ecr:GetDownloadUrlForLayer",
@@ -35,7 +35,7 @@ data "aws_iam_policy_document" "dflow_main_ecr_policy" {
 }
 
 # This is for read and write to ECR for users
-data "aws_iam_policy_document" "dflow_pullpush_ecr_policy_doc" {
+data "aws_iam_policy_document" "test_pullpush_ecr_policy_doc" {
   statement {
     actions = [
       "ecr:GetAuthorizationToken",
@@ -60,18 +60,18 @@ data "aws_iam_policy_document" "dflow_pullpush_ecr_policy_doc" {
   }
 }
 
-resource "aws_iam_policy" "dflow_pullpush_ecr_policy" {
-  name        = "dflow_pullpush_ecr"
+resource "aws_iam_policy" "test_pullpush_ecr_policy" {
+  name        = "test_pullpush_ecr"
   description = "Push and Pull ECR"
-  policy      = data.aws_iam_policy_document.dflow_pullpush_ecr_policy_doc.json
+  policy      = data.aws_iam_policy_document.test_pullpush_ecr_policy_doc.json
 }
 
-resource "aws_iam_policy_attachment" "dflow_pullpush_ecr_policy" {
-  name = "dflow_pullpush_ecr_attach"
+resource "aws_iam_policy_attachment" "test_pullpush_ecr_policy" {
+  name = "test_pullpush_ecr_attach"
 
   roles = [
     aws_iam_role.builder.name,
   ]
 
-  policy_arn = aws_iam_policy.dflow_pullpush_ecr_policy.arn
+  policy_arn = aws_iam_policy.test_pullpush_ecr_policy.arn
 }

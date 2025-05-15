@@ -13,12 +13,12 @@ spec:
       maxUnavailable: 2  # maxUnavailable define how many pods can be unavailable during the rolling update
   selector:
     matchLabels:
-      io.dflow.service: app-api
+      io.test.service: app-api
   template:
     metadata:
       creationTimestamp: null
       labels:
-        io.dflow.service: app-api
+        io.test.service: app-api
     spec:
       containers:
         - env:

@@ -1,8 +1,8 @@
-# Welcome to the DFlow Infra Repo!!
+# Welcome to the test Infra Repo!!
 
 ## Overview
 
-Welcome! This repository contains infrastructure as code (IaC) written in Terraform and Helm for provisioning and managing DFlow's cloud resources.
+Welcome! This repository contains infrastructure as code (IaC) written in Terraform and Helm for provisioning and managing test's cloud resources.
 
 ## Terraform
 
@@ -71,7 +71,7 @@ There are a few manual steps you need to perform to complete a cluster before us
 
 ```bash
 kubectl apply -f k8/preload/aws-auth-cm.yaml
-aws eks update-kubeconfig --region us-east-2 --name dflow-production-eks
+aws eks update-kubeconfig --region us-east-2 --name test-production-eks
 ```
 
 #### Turn on the metrics Service
@@ -112,10 +112,10 @@ helm install datadog-monitoring \
     datadog/datadog
 ```
 
-## Installing the DFlow App
+## Installing the test App
 
 ```bash
-helm upgrade --install dflow helm -f helm/values.yaml --install --set tag=17 -n api
+helm upgrade --install test helm -f helm/values.yaml --install --set tag=17 -n api
 ```
 
 ### To scale api instances

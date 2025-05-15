@@ -5,14 +5,14 @@ metadata:
   namespace: kube-system
 data:
   mapRoles: |
-    - rolearn: arn:aws:iam::491085427149:role/dflow-production-eks-spot-eks-node-group-20250115210022606000000004
+    - rolearn: arn:aws:iam::491085427149:role/test-production-eks-spot-eks-node-group-20250115210022606000000004
       username: system:node:{{EC2PrivateDNSName}}
       groups:
         - system:bootstrappers
         - system:nodes
 
-    - rolearn: arn:aws:iam::491085427149:role/dflow-production-eks-spot-eks-node-group-20250115210022606000000004
-      username: dflow-production-eks-spot-eks-node-group-20250115210022606000000004
+    - rolearn: arn:aws:iam::491085427149:role/test-production-eks-spot-eks-node-group-20250115210022606000000004
+      username: test-production-eks-spot-eks-node-group-20250115210022606000000004
       groups:
         - system:masters
         - system:bootstrappers

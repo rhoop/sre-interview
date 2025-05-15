@@ -21,7 +21,7 @@ variable "service" {
 
 terraform {
   backend "s3" {
-    bucket = "dflow-terraform-state-use2"
+    bucket = "test-terraform-state-use2"
     key    = "psql/prod/main.tfstate"
     region = "us-east-2"
   }
@@ -31,7 +31,7 @@ data "terraform_remote_state" "global" {
   backend = "s3"
 
   config = {
-    bucket = "dflow-terraform-state-use2"
+    bucket = "test-terraform-state-use2"
     key    = "global/variables/main.tfstate"
   }
 }
@@ -39,7 +39,7 @@ data "terraform_remote_state" "global" {
 data "terraform_remote_state" "vpc" {
   backend = "s3"
   config = {
-    bucket = "dflow-terraform-state-use2"
+    bucket = "test-terraform-state-use2"
     key    = "vpc/production/main.tfstate"
     region = "us-east-2"
   }
